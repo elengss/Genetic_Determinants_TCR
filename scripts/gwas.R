@@ -1,3 +1,5 @@
+### this does GWAS manhattan plot eg. in Figure 3a
+
 library(qqman)
 ### this is a modified version of the manhattan function in the qqman package
 source("manhattan.R")
