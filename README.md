@@ -1,4 +1,4 @@
-**#Defining the genetic determinants of CD8+ T cell receptor repertoire in the context of immune checkpoint blockade**
+**Defining the genetic determinants of CD8+ T cell receptor repertoire in the context of immune checkpoint blockade**
 
 Abstract
 CD8+ T cells play a central role in the cancer response to immune checkpoint blockade (ICB) treatment, with
