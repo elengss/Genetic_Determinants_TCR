@@ -51,9 +51,9 @@ return(out1)
 
 
 library(ggplot2)
-read.table("c1b_inrt.TRBV19*00.glm.linear",header=T,comment.char="")->lin;  
-
-data.frame(lin$ID,lin$CHROM,lin$POS,lin$P)->df
+read.table("./data/c1b_inrt.TRBV19*00.glm.linear",header=T,comment.char="")->lin;  
+lin[which(lin$TEST=="ADD"),]->lin
+data.frame(lin$ID,lin$X.CHROM,lin$POS,lin$P)->df
 colnames(df)<-c("SNP","CHR","BP","P");
 df[which(df$CHR!="0"),]->tmp3;
 na.omit(tmp3)->tmp3;
