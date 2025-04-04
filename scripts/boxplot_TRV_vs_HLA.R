@@ -1,4 +1,5 @@
-    
+## This does the box plot (TRV gene usage vs HLA dosage) for Figure 4b
+
 x<-c('scales','stringi','reshape2','plyr','ggpubr','wesanderson','ggrepel','ggbeeswarm')
 lapply(x, require, character.only = TRUE)
 library(stringi)
