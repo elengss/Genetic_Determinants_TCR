@@ -1,11 +1,10 @@
-### this does individual hla plots eg figure 4
-### it takes a dataframe with 4 columns - SNP, Chr, BP, P
+### this does individual hla plots eg figure 4a
 
 library(ggplot2)
 library(ggpubr)
 library(grid)
 
-getout<-function(allmanh){
+getplot<-function(allmanh){
 colnames(allmanh)<-c("SNP","CHR","BP","P");
 allmanh[which(allmanh$CHR!="0"),]->tmp2
 tmp2->tmp3
@@ -59,7 +58,7 @@ colnames(df)<-c("SNP","CHR","BP","P");
 df[which(df$CHR!="0"),]->tmp3;
 na.omit(tmp3)->tmp3;
 
-getout(tmp3)->out2
+getplot(tmp3)->out2
 ggsave(
   "TRBV19_HLA.png",
   plot=out2,
