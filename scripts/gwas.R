@@ -1,4 +1,4 @@
-### this does GWAS manhattan plot eg. in Figure 3a
+### this does GWAS manhattan plot. Figure 3a shows all beta chains plotted together but this just does TRBV28
 
 library(qqman)
 ### this is a modified version of the manhattan function in the qqman package
@@ -16,7 +16,7 @@ tmp3[which(tmp3$CHR==7),]->tmp4
 tmp4[which(tmp4$BP>141299011),]->tmp5
 tmp5[which(tmp5$BP<143813287),"SNP"]->snpsOfInterest
 
-png("beta_allmh.png",type="cairo")
+png("c1b_inrt.TRBV28*00.glm.linear.Rd.png",type="cairo")
 manhattan(tmp3, ylim = c(0, 50), cex = 0.6, cex.axis = 0.9, 
     col = c("blue2", "grey3"), highlight=snpsOfInterest, suggestiveline = F, genomewideline = F, chrlabs = c(1:22))
 dev.off()
