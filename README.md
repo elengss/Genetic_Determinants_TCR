@@ -15,4 +15,3 @@ treatment with ICB, which has novel implications for understanding determinants 
 outcomes.
 
 This repository contains the code and data used to generate the figures.
-There is a readme file in each of the directories.
