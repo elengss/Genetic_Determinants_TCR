@@ -1,4 +1,5 @@
-### this does individual hla plots
+### this does individual hla plots eg figure 4
+### it takes a dataframe with 4 columns - SNP, Chr, BP, P
 
 library(ggplot2)
 library(ggpubr)
