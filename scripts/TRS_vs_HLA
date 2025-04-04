@@ -1,0 +1,54 @@
+#### This plots tumour reactivity vs HLA matching. It takes as input 2 dataframes which contains tumour reactivity score (calculated from 20 genes) for each cell and their HLA matching status (0/1)
+
+load("tumour_reactivity_with_batch_C1.Rd")
+df->df2_c1
+
+> head(df)
+       score hla_matched patient_id      cell_type batch
+1  1.3523983           0      M_203 CD8.TEMRA.CMC1 TCELL
+2 -1.0648037           0      M_156   CD8.TCM.CCL5 TCELL
+3  1.2644842           0      M_192        CD8.TEM TCELL
+4 -0.7378422           0      M_156        CD8.TCM TCELL
+5 -0.6888910           0      M_156   CD8.TCM.CCL5 TCELL
+6  0.9229285           0      M_156   CD8.TCM.CCL5 TCELL
+
+load("tumour_reactivity_with_batch_C2.Rd")
+df->df2_c2
+
+> head(df)
+        score hla_matched patient_id    cell_type batch
+1  1.91574159           0      M_193      CD8.TCM TCELL
+2 -0.79089787           0      M_193 CD8.TCM.CCL5 TCELL
+3 -0.52070631           0      M_214 CD8.TCM.CCL5 TCELL
+4 -0.47722630           0      M_183      CD8.TCM TCELL
+5  0.03887224           0      M_214      CD8.TCM TCELL
+6  0.39076253           0      M_214      CD8.TEM TCELL
+> 
+
+annotation<-data.frame(
+x<-c(1.5,1.5),
+y<-c(4.5,4.5),
+label=c("beta=0.0854 p=6.40e-4","beta=0.132 p=3.77e-8"),group=c("pre-treatment","post-treatment"))
+
+c(rep("pre-treatment",2),rep("post-treatment",2))->mat1
+c(1,2,1,2)->mat2
+vector()->mat3
+median(df2_c1[which(df2_c1[,2]==0),1])->mat3[1]
+median(df2_c1[which(df2_c1[,2]==1),1])->mat3[2]
+median(df2_c2[which(df2_c2[,2]==0),1])->mat3[3]
+median(df2_c2[which(df2_c2[,2]==1),1])->mat3[4]
+data.frame(mat1,mat2,mat3)->mat
+colnames(mat)<-c("group","hla_matched","mean")
+
+group<-c(rep("pre-treatment",nrow(df2_c1)),rep("post-treatment",nrow(df2_c2)))
+data.frame(rbind(df2_c1,df2_c2),group)->alldf
+alldf$group <- factor(alldf$group, levels = c("pre-treatment","post-treatment"))
+alldf$hla_matched<-as.factor(alldf$hla_matched)
+trsPlot<-ggplot(alldf,aes(hla_matched,score))+ scale_fill_brewer(type='div')+ geom_boxplot(alldf,mapping=aes(hla_matched,score),colour='steelblue4',alpha=0.2,width=.15)+geom_violin(alldf,mapping=aes(x=hla_matched,y=score,fill=hla_matched),colour='steelblue4',alpha=0.2)+geom_line(mat,mapping=aes(hla_matched,mean))+
+facet_wrap(~group)+theme_bw()+scale_y_continuous('Tumour Reactivity Score')+scale_x_discrete('HLA Matching Status')+theme_classic(base_size=20)+geom_text(data=annotation,aes(x=x,y=y,label=label))
+    ggsave(
+  "trs_all_8jul.png",
+  plot=trsPlot,
+  width = 10,
+  height = 10,
+  dpi = 400)
