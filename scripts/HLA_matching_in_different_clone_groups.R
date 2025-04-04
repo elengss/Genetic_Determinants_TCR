@@ -1,3 +1,4 @@
+### This does Figure 5A
 ### This calculates proportion of HLA matched clones per individual in 3 different groups of clones - unstable (seen pre-treatment only), novel (seen post-treatment only) and persistent (seen both pre and post treatment)
 ### It takes as input 3 vectors - which are proportion of HLA matched clones for each individual across the 3 different clone groups
 
